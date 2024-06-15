@@ -1,5 +1,5 @@
 ---
-"@asyncapi/parser": major
+"@asyncapi/parser": minor
 ---
 
 Integrated the Turborepo.
