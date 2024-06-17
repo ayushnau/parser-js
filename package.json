@@ -20,11 +20,9 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "npm@10.2.4",
+  "packageManager": "npm@8.19.4",
   "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+    "apps/*"  ],
   "dependencies": {
     "@changesets/cli": "^2.26.1"
   }
