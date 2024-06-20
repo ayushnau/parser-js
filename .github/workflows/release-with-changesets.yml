@@ -108,8 +108,8 @@ jobs:
         uses: changesets/action@v1
         id: release
         with:
-          publish: npm turbo run build && npm changeset@0.2.6 publish
-          version: npm changeset@0.2.6 version
+          publish: npm turbo run build && npm changeset publish
+          version: npm changeset version
           commit: "version packages"
           title: "chore: version packages"
         env:
