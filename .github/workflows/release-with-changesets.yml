@@ -101,6 +101,8 @@ jobs:
         name: Install dependencies
         shell: bash
         run: npm ci
+      - name: Install @changesets/cli globally
+        run: npm install -g @changesets/cli
       - if: steps.packagejson.outputs.exists == 'true'
         name: Publish to any of NPM, Github, and Docker Hub
         uses: changesets/action@v1
