@@ -66,7 +66,15 @@ jobs:
       - if: steps.packagejson.outputs.exists == 'true'
         name: Run test
         run: npm test --if-present
-      #  
+      - if: failure() # Only, on failure, send a message on the 94_bot-failing-ci slack channel
+      name: Report workflow run status to Slack
+      uses: 8398a7/action-slack@v3
+      with:
+        status: ${{ job.status }}
+        fields: repo,action,workflow
+        text: 'Release workflow failed in testing job'
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_CI_FAIL_NOTIFY }}
 
   release:
     needs: [test-nodejs]
@@ -97,10 +105,8 @@ jobs:
         shell: bash
         run: npm ci
       - if: steps.packagejson.outputs.exists == 'true'
-        name: Create Release Pull Request or Release
-        uses: changesets/action@v1
-      - if: steps.packagejson.outputs.exists == 'true'
         name: Publish to any of NPM, Github, and Docker Hub
+        uses: changesets/action@v1
         id: release
         with:
           publish: npx turbo run build && npx changeset@0.2.6 publish
