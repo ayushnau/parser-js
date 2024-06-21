@@ -105,6 +105,12 @@ jobs:
         shell: bash
         run: npm ci
       - if: steps.packagejson.outputs.exists == 'true'
+        name: Install @changesets/cli
+        run: npm install --save-dev @changesets/cli@2.27.5
+        name: Publish to any of NPM, Github, and Docker Hub
+        uses: changesets/action@v1
+        id: release
+      - if: steps.packagejson.outputs.exists == 'true'
         name: Publish to any of NPM, Github, and Docker Hub
         uses: changesets/action@v1
         id: release
