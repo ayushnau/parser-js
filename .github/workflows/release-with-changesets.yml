@@ -104,12 +104,15 @@ jobs:
       - name: Install @changesets/cli globally
         run: npm install -g @changesets/cli
       - if: steps.packagejson.outputs.exists == 'true'
+        name: Install @changesets/cli
+        run: npm install --save-dev @changesets/cli@2.27.5
+      - if: steps.packagejson.outputs.exists == 'true'
         name: Publish to any of NPM, Github, and Docker Hub
         uses: changesets/action@v1
         id: release
         with:
-          publish: npx turbo run build && npx changeset publish
-          version: npx changeset version
+          publish: npm run publish-packages
+          version: npm run version-packages
           commit: "version packages"
           title: "chore: version packages"
         env:
