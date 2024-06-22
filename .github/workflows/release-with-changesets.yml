@@ -1,5 +1,5 @@
 
-# It does  only if there is a package.json file in the root of the project
+# It does only if there is a package.json file in the root of the project
 name: Release - if Node project
 
 on:
