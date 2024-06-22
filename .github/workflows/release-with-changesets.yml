@@ -1,4 +1,3 @@
-# Don't make changes to this file in this repo as they will be overwritten with changes made to the same file in the above-mentioned repo
 
 # It does  only if there is a package.json file in the root of the project
 name: Release - if Node project
@@ -103,9 +102,6 @@ jobs:
         run: npm ci
       - name: Install @changesets/cli globally
         run: npm install -g @changesets/cli
-      - if: steps.packagejson.outputs.exists == 'true'
-        name: Install @changesets/cli
-        run: npm install --save-dev @changesets/cli@2.27.5
       - if: steps.packagejson.outputs.exists == 'true'
         name: Publish to any of NPM, Github, and Docker Hub
         uses: changesets/action@v1
