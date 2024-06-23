@@ -123,7 +123,7 @@ jobs:
           GIT_COMMITTER_EMAIL: info@asyncapi.io
       - if: steps.packagejson.outputs.exists == 'true'
         name: Publish to any of NPM, Github, and Docker Hub
-        run: npm run turbo run build && npm changeset publish
+        run: npx run turbo run build && npx changeset publish
       - if: failure() # Only, on failure, send a message on the 94_bot-failing-ci Slack channel
         name: Report workflow run status to Slack
         uses: 8398a7/action-slack@v3
