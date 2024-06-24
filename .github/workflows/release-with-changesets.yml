@@ -102,7 +102,7 @@ jobs:
       - if: steps.packagejson.outputs.exists == 'true'
         name: Install Changesets Packages
         shell: bash
-        run: npm install @changesets/changelog-git @changesets/cli@2.27.6
+        run: npm install @changesets/changelog-git@0.2.0 @changesets/cli@2.27.6
       - if: steps.packagejson.outputs.exists == 'true'
         name: Publish to any of NPM, Github, and Docker Hub
         uses: changesets/action@v1
