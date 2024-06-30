@@ -100,6 +100,10 @@ jobs:
         shell: bash
         run: npm ci
       - if: steps.packagejson.outputs.exists == 'true'
+        name: Install Changesets Packages
+        shell: bash
+        run: npm install @changesets/changelog-git@0.2.0
+      - if: steps.packagejson.outputs.exists == 'true'
         name: Publish to any of NPM, Github, and Docker Hub
         uses: changesets/action@v1
         id: release
